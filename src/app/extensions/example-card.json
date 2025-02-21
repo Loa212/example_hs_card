@@ -1,7 +1,7 @@
 {
   "type": "crm-card",
   "data": {
-    "title": "Example Card",
+    "title": "Stakeholder details",
     "uid": "get_started_card",
     "location": "crm.record.tab",
     "module": {

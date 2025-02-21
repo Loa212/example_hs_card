@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import {
   Divider,
   Link,
+  List,
   Button,
   Text,
   Input,
   Flex,
   hubspot,
+  DescriptionList,
+  DescriptionListItem,
 } from "@hubspot/ui-extensions";
+import { CrmDataHighlight, CrmPropertyList } from '@hubspot/ui-extensions/crm';
+
+
 
 // Define the extension to be run within the Hubspot CRM
 hubspot.extend(({ context, runServerlessFunction, actions }) => (
@@ -31,15 +37,32 @@ const Extension = ({ context, runServerless, sendAlert }) => {
 
   return (
     <>
-      <Text>
-        <Text format={{ fontWeight: "bold" }}>
-          Your first UI extension is ready!!!
-        </Text>
-        Congratulations, {context.user.firstName}! You just deployed your first
-        HubSpot UI extension. This example demonstrates how you would send
-        parameters from your React frontend to the serverless function and get a
-        response back.
+      <Text format={{ fontWeight: "bold" }}>
+        Stakeholder Card 
       </Text>
+
+      <CrmDataHighlight
+      properties={[
+        'createdate',
+        'lifecyclestage',
+        'hs_num_open_deals',
+        'hs_num_child_companies',
+      ]}
+    />
+
+<CrmPropertyList
+      properties={[
+        'lastname',
+        'email',
+        'createdate',
+        'address',
+        'city',
+        'state',
+        'zip',
+      ]}
+      direction="row"
+    />
+
       <Flex direction="row" align="end" gap="small">
         <Input name="text" label="Send" onInput={(t) => setText(t)} />
         <Button type="submit" onClick={handleClick}>
